@@ -2,27 +2,21 @@ package com.spring.myfood.model;
 
 import java.util.Date;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "rankings")
 public class Ranking {
 
     public Ranking(String title, String type, int score) {
@@ -32,27 +26,26 @@ public class Ranking {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Setter
-    @Column
+    @Field
     private String title;
 
     @Setter
-    @Column
+    @Field
     private int score = 1;
 
     @Setter
-    @Column
+    @Field
     private String type;
 
     @JsonIgnore
-    @CreationTimestamp
+    @CreatedDate
     private Date createdAt;
 
     @JsonIgnore
-    @UpdateTimestamp
+    @LastModifiedDate
     private Date updatedAt;
 
     @Override

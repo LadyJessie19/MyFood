@@ -1,5 +1,7 @@
 package com.spring.myfood.dtos.request;
 
+import com.spring.myfood.enums.FoodCategoryEnum;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,4 +23,13 @@ public class RequestProductDTO {
     private int price;
 
     private String image;
+
+    @NotBlank(message = "Category is required")
+    private String category;
+
+    @Override
+    public String toString() {
+        return "RequestProductDTO [ name=" + name + ", price=" + price + ", category=" + category + ", description="
+                + description + ", image=" + image;
+    }
 }

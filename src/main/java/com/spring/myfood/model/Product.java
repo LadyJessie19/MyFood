@@ -1,9 +1,15 @@
 package com.spring.myfood.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.Date;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.spring.myfood.enums.FoodCategoryEnum;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,24 +20,35 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Setter
-    @Column
+    @Field
     private String name;
 
     @Setter
-    @Column
+    @Field
     private String description;
 
     @Setter
-    @Column
+    @Field
     private int price;
 
     @Setter
-    @Column
+    @Field
     private String image;
+
+    @Setter
+    @Field
+    private FoodCategoryEnum category;
+
+    @JsonIgnore
+    @CreatedDate
+    private Date createdAt;
+
+    @JsonIgnore
+    @LastModifiedDate
+    private Date updatedAt;
 
     @Override
     public String toString() {
