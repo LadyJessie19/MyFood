@@ -1,7 +1,5 @@
 package com.spring.myfood.dtos.request;
 
-import com.spring.myfood.enums.FoodCategoryEnum;
-
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

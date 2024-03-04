@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
-import com.spring.myfood.dtos.response.ResponseSearchFoodDTO;
+import com.spring.myfood.model.Product;
 import com.spring.myfood.model.Ranking;
 import com.spring.myfood.service.RankingService;
 
@@ -23,26 +23,30 @@ import com.spring.myfood.service.RankingService;
 @RequestMapping("/rankings")
 @SecurityRequirement(name = "Authorization")
 public class RankingController {
-    public RankingController() {
-    }
 
     @Autowired
     private RankingService rankingService;
 
     @GetMapping("/search")
-    public ResponseEntity<List<ResponseSearchFoodDTO>> searchFood(@RequestParam(required = false) String food) {
+    public ResponseEntity<List<Product>> searchFood(@RequestParam String foodTitle) {
 
-        if (food == null || food.isEmpty()) {
+        if (foodTitle == null || foodTitle.isEmpty()) {
             return ResponseEntity.ok().body(Collections.emptyList());
         }
 
-        return ResponseEntity.ok().body(rankingService.searchingFoods(food));
+        return ResponseEntity.ok().body(rankingService.searchingFoods(foodTitle));
     }
 
     @GetMapping("/top-foods")
     public ResponseEntity<List<Ranking>> findMostScoredFoods(
             @PageableDefault(page = 0, size = 3) Pageable pageable) {
         return ResponseEntity.ok().body(rankingService.mostScoredFoods(pageable));
+    }
+
+    @GetMapping("/top-categories")
+    public ResponseEntity<List<Ranking>> findMostSearchedCategories(
+            @PageableDefault(page = 0, size = 3) Pageable pageable) {
+        return ResponseEntity.ok().body(rankingService.findMostSearchedCategories(pageable));
     }
 
     @GetMapping("/{id}")

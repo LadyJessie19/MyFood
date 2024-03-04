@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.spring.myfood.enums.RankingTypeEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Ranking {
 
-    public Ranking(String title, String type, int score) {
+    public Ranking(String title, RankingTypeEnum type, int score) {
         this.title = title;
         this.type = type;
         this.score = score;
@@ -38,7 +39,7 @@ public class Ranking {
 
     @Setter
     @Field
-    private String type;
+    private RankingTypeEnum type;
 
     @JsonIgnore
     @CreatedDate

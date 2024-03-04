@@ -9,6 +9,9 @@ import org.springframework.data.repository.query.Param;
 import com.spring.myfood.model.Product;
 
 public interface ProductRepository extends MongoRepository<Product, String> {
-    @Query("{'name': ?0}")
-    public List<Product> findByName(@Param(value = "productName") String productName);
+    @Query("{'name': :foodTitle}")
+    public List<Product> findByName(@Param("foodTitle") String foodTitle);
+
+    @Query("{'title': { $regex: :foodTitle, $options: 'i' }}")
+    List<Product> findByTitleRegexIgnoreCase(@Param("foodTitle") String foodTitle);
 }
