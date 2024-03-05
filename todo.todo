@@ -1,7 +1,7 @@
 ✔ Add o código @done(24-02-16 16:59)
     ✔ Model @done(24-02-16 16:59)
     ✔ Repository @done(24-02-16 16:59)
-    ☐ Service
+    ✔ Service @done(24-03-05 17:25)
     ✔ Controller @done(24-02-16 16:59)
 ✔ Criar entidade Product @done(24-02-16 16:59)
     ✔ Model @done(24-02-16 16:59)
@@ -10,5 +10,8 @@
     ✔ Controller @done(24-02-16 17:16)
 ✔ Conectar no banco @done(24-02-21 16:51)
 ✔ Criar docs swagger @done(24-02-16 17:21)
+✔ Testar @done(24-03-05 17:26)
+
+☐ Add o pageable na rota de listar todos os produtos
+☐ Fazer o deploy do projeto
 ☐ Criar md explicando o projeto
-☐ Testar

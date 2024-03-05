@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.myfood.dtos.request.RequestProductDTO;
+import com.spring.myfood.dtos.response.ResponseSearchFoodDTO;
 import com.spring.myfood.model.Product;
 import com.spring.myfood.service.ProductService;
 
@@ -45,7 +46,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> findProductById(@PathVariable String id) {
+    public ResponseEntity<ResponseSearchFoodDTO> findProductById(@PathVariable String id) {
         return ResponseEntity.ok().body(productService.findProductById(id));
     }
 }

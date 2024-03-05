@@ -1,18 +1,17 @@
 package com.spring.myfood.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.spring.myfood.enums.FoodCategoryEnum;
 import com.spring.myfood.enums.RankingTypeEnum;
 import com.spring.myfood.model.Product;
 import com.spring.myfood.model.Ranking;
+import com.spring.myfood.mongo.MyFoodMongo;
 import com.spring.myfood.repository.ProductRepository;
 import com.spring.myfood.repository.RankingRepository;
 
@@ -25,39 +24,42 @@ public class RankingService {
     @Autowired
     public ProductRepository productRepository;
 
+    @Autowired
+    private MyFoodMongo myFoodMongo;
+
     public List<Product> searchingFoods(String foodTitle) {
-        String lowerFoodTitle = foodTitle.toLowerCase();
+        List<Product> foundProducts = searchFoods(foodTitle.toLowerCase());
 
-        updateFoodRanking(lowerFoodTitle, RankingTypeEnum.FOOD);
+        for (Product product : foundProducts) {
+            updateFoodRanking(product, RankingTypeEnum.FOOD);
+        }
 
-        List<Product> result = searchFoods(lowerFoodTitle);
-
-        return result;
+        return foundProducts;
     }
 
-    public void updateFoodRanking(String foodTitle, RankingTypeEnum type) {
+    public void updateFoodRanking(Product product, RankingTypeEnum type) {
 
-        if (foodTitle != null) {
+        if (product != null) {
 
-            Ranking existsRanking = rankingRepository.findByTitleAndType(foodTitle, type);
+            Ranking existsRanking = myFoodMongo.findRankingByTitleAndType(product.getName(), type);
 
             if (existsRanking != null) {
                 updateCategoryRanking(existsRanking.getTitle());
                 existsRanking.setScore(existsRanking.getScore() + 1);
                 rankingRepository.save(existsRanking);
             } else {
-                Ranking newRanking = new Ranking(foodTitle, type, 1);
+                Ranking newRanking = new Ranking(product.getName(), type, 1);
                 updateCategoryRanking(newRanking.getTitle());
                 rankingRepository.save(newRanking);
             }
         } else {
-            return;
+            throw new IllegalArgumentException("Product cannot be null");
         }
     }
 
     public void updateCategoryRanking(String foodTitle) {
 
-        List<Product> foundProduct = productRepository.findByTitleRegexIgnoreCase(foodTitle);
+        List<Product> foundProduct = myFoodMongo.searchFoods(foodTitle);
 
         if (foundProduct.isEmpty()) {
             return;
@@ -66,7 +68,7 @@ public class RankingService {
         String category = foundProduct.get(0).getCategory().toString().toUpperCase();
 
         if (isValidCategory(category)) {
-            Ranking existsRanking = rankingRepository.findByTitleAndType(category, RankingTypeEnum.CATEGORY);
+            Ranking existsRanking = myFoodMongo.findRankingByTitleAndType(category, RankingTypeEnum.CATEGORY);
 
             if (existsRanking != null) {
                 existsRanking.setScore(existsRanking.getScore() + 1);
@@ -89,28 +91,28 @@ public class RankingService {
         }
     }
 
-    public List<Product> searchFoods(String foodTitle) {
-        return productRepository.findByTitleRegexIgnoreCase(foodTitle);
-    }
-
-    public List<Ranking> mostScoredFoods(Pageable pageable) {
-        return rankingRepository.findTopFoodsRankingsOrderByScoreDesc(pageable);
+    private List<Product> searchFoods(String lowerFoodTitle) {
+        return myFoodMongo.searchFoods(lowerFoodTitle);
     }
 
     public Ranking findRankingById(String id) {
         if (id == null) {
             throw new IllegalArgumentException("Id cannot be null");
         }
-        return rankingRepository.findById(id).get();
+        Optional<Ranking> foundRanking = rankingRepository.findById(id);
+
+        if (foundRanking.isEmpty()) {
+            throw new IllegalArgumentException("Ranking not found");
+        }
+
+        return foundRanking.get();
+    }
+
+    public List<Ranking> mostScoredFoods(Pageable pageable) {
+        return myFoodMongo.findMostScoredFoods(pageable);
     }
 
     public List<Ranking> findMostSearchedCategories(Pageable pageable) {
-        return rankingRepository.findTopCategoriesRankingsOrderByScoreDesc(pageable);
+        return myFoodMongo.findMostSearchedCategories(pageable);
     }
-
-    // private List<Product> searchFoodsQuery(String foodTitle) {
-    // Query query = new Query();
-    // query.addCriteria(Criteria.where("name").is(foodTitle));
-    // List<Product> products = productRepository.
-    // }
 }

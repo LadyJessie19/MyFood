@@ -38,16 +38,4 @@ public class ResponseSearchFoodDTO {
     private String image;
     private FoodCategoryEnum category;
     private int score = 0;
-
-    // @PostConstruct
-    // public void searchProductScore() {
-    // Ranking foundRanking = rankingRepository.findByTitleAndType(name,
-    // RankingTypeEnum.FOOD);
-
-    // if (foundRanking != null) {
-    // this.score = foundRanking.getScore();
-    // } else {
-    // this.score = 0;
-    // }
-    // }
 }
