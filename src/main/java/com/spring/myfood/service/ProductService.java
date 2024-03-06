@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.spring.myfood.dtos.request.RequestProductDTO;
@@ -51,8 +53,12 @@ public class ProductService {
         return productRepository.save(newProduct);
     }
 
-    public List<Product> findAllProducts() {
-        return productRepository.findAll();
+    public Page<Product> findAllProducts(Pageable pageable) {
+        return productRepository.findAll(pageable);
+    }
+
+    public Page<Product> findProductsByCategory(FoodCategoryEnum category, Pageable pageable) {
+        return myFoodMongo.findProductsByCategory(category, pageable);
     }
 
     public ResponseSearchFoodDTO findProductById(String id) {

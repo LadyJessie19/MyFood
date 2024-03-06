@@ -4,13 +4,16 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Component;
 
+import com.spring.myfood.enums.FoodCategoryEnum;
 import com.spring.myfood.enums.RankingTypeEnum;
 import com.spring.myfood.model.Product;
 import com.spring.myfood.model.Ranking;
@@ -50,5 +53,22 @@ public class MyFoodMongo {
                 .with(Sort.by(Sort.Order.desc("score")))
                 .with(pageable);
         return mongoTemplate.find(query, Ranking.class);
+    }
+
+    public Page<Product> findProductsByCategory(FoodCategoryEnum category, Pageable pageable) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("category").is(category));
+        query.with(pageable);
+
+        // Nova instância de Query apenas para a contagem
+        Query countQuery = new Query();
+        countQuery.addCriteria(Criteria.where("category").is(category));
+
+        long total = mongoTemplate.count(countQuery, Product.class);
+
+        return PageableExecutionUtils.getPage(
+                mongoTemplate.find(query, Product.class),
+                pageable,
+                () -> total);
     }
 }

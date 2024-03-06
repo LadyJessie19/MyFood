@@ -2,31 +2,32 @@ package com.spring.myfood.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
-import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
-import io.swagger.v3.oas.models.security.SecurityRequirement;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 
 @Configuration
-public class SwaggerConfiguration {
-    private SecurityScheme createAPIKeyScheme() {
-        return new SecurityScheme().type(SecurityScheme.Type.HTTP)
-                .bearerFormat("JWT")
-                .scheme("bearer");
-    }
+public class SwaggerConfiguration implements WebMvcConfigurer {
 
-    @Bean
-    public OpenAPI openAPI() {
-        return new OpenAPI().addSecurityItem(new SecurityRequirement().addList("Header Authorization"))
-                .components(new Components().addSecuritySchemes("Authorization", createAPIKeyScheme()))
-                .info(new Info().title("MyFood - Ranking System")
-                        .description(
-                                "The purpose of this project is to demostrate the most searched foods of an fictitious app called MyFood")
-                        .version("1.1")
-                        .license(new License().name("GitHub Repository")
-                                .url("https://github.com/LadyJessie19/MyFood")));
-    }
+        @Bean
+        public OpenAPI customOpenAPI() {
+                return new OpenAPI()
+                                .info(new Info()
+                                                .title("My Food - Ranking System")
+                                                .description("This documentation comprises all endpoints for the My Food application. My Food is a fictional app that implements a ranking system. The purpose of this project is to showcase the most searched foods and their associated scores within the fictitious app named MyFood.")
+                                                .version("1.1")
+                                                .contact(new Contact().name("GitHub Repository")
+                                                                .url("https://github.com/LadyJessie19/MyFood")));
+        }
+
+        @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/webjars/**")
+                                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+                registry.addResourceHandler("swagger-ui.html")
+                                .addResourceLocations("classpath:/META-INF/resources/");
+        }
 }

@@ -12,6 +12,8 @@
 ✔ Criar docs swagger @done(24-02-16 17:21)
 ✔ Testar @done(24-03-05 17:26)
 
-☐ Add o pageable na rota de listar todos os produtos
-☐ Fazer o deploy do projeto
-☐ Criar md explicando o projeto
+✔ Add o pageable na rota de listar todos os produtos @done(24-03-06 14:38)
+✔ Add a opção de filtrar pela categorias dos produtos @done(24-03-06 14:38)
+✔ Criar um bom swagger (bem detalhado) @done(24-03-06 13:54)
+✔ Fazer o deploy do projeto @done(24-03-06 13:05)
+✔ Criar md explicando o projeto @done(24-03-06 14:39)
