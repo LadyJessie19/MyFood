@@ -10,17 +10,17 @@
 
 **Development Start Date:** 03/02/2024 ⏩
 
-**Development End Date:** 08/03/2024 🏁
+**Development End Date:** 11/03/2024 🏁
 
 **Status:** Completed ✅
 
-**Technologies used:** Spring Boot ☕ | MongoDB 🍃| Railway 🚈 | Swagger 🪂 | Insomnia 🟣
+**Technologies used:** ☕ Spring Boot | 🍃 MongoDB | 🚈 Railway | 🪂 Swagger | 🟣 Insomnia
 
 🚈 **Railway Deploy Link:** [MyFood Deploy](https://app-myfood-production.up.railway.app)
 
 🪂 **Swagger Link:** [MyFood Swagger](https://app-myfood-production.up.railway.app/swagger-ui/index.html#/)
 
-🟣 **Insomnia Import File Link:** [MyFood Insomnia](https://github.com/LadyJessie19/MyFood/tree/main/insomnia)
+🟣 **Insomnia Import File Link:** [MyFood Insomnia](https://github.com/LadyJessie19/MyFood/tree/main/insomnia/Insomnia_2024-03-08.json)
 
 ## Project Description 📝
 
