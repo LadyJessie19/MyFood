@@ -1,5 +1,7 @@
 package com.spring.myfood.config;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
@@ -9,6 +11,7 @@ import springfox.documentation.swagger.web.UiConfigurationBuilder;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.servers.Server;
 
 @Configuration
 public class SwaggerConfiguration implements WebMvcConfigurer {
@@ -16,6 +19,8 @@ public class SwaggerConfiguration implements WebMvcConfigurer {
         @Bean
         public OpenAPI customOpenAPI() {
                 return new OpenAPI()
+                                .servers(List.of(new Server().url("https://app-myfood-production.up.railway.app/"),
+                                                new Server().url("http://localhost:8080/")))
                                 .info(new Info()
                                                 .title("My Food - Ranking System")
                                                 .description("This documentation comprises all endpoints for the My Food application. My Food is a fictional app that implements a ranking system. The purpose of this project is to showcase the most searched foods and their associated scores within the fictitious app named MyFood.")
