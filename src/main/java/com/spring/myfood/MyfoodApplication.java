@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.spring.myfood.config", "com.spring.myfood.controller", "com.spring.myfood.service",
-		"com.spring.myfood.model",
-		"com.spring.myfood.repository", "com.spring.myfood.enums", "com.spring.myfood.mongo" })
+		"com.spring.myfood.model", "com.spring.myfood.repository", "com.spring.myfood.enums",
+		"com.spring.myfood.mongo" })
 public class MyfoodApplication {
 
 	public static void main(String[] args) {
