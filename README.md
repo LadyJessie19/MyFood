@@ -4,7 +4,7 @@
 
 ### MyFood is a platform that allows users to explore trending foods and rate their favorites, creating a dynamic food ranking system.
 
-<img src="assets/main.png" alt="MyFood" width="500" height="300">
+<img src="assets/main.png" alt="MyFood" width="300" >
 
 **Project Name:** MyFood 🍔🍕🌭
 
@@ -34,7 +34,7 @@ MyFood is a fictional app that implements a ranking system. The purpose of this 
 
 ## Development Team 🙋‍♀️
 
-<img src="assets/photo.png" alt="Jessie" width="300" height="300">
+<img src="assets/photo.png" alt="Jessie" width="150" >
 
 - Developer: [Jessie M Bentes](https://github.com/LadyJessie19)
 
