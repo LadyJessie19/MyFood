@@ -4,7 +4,7 @@
 
 ### MyFood is a platform that allows users to explore trending foods and rate their favorites, creating a dynamic food ranking system.
 
-![MyFood](https://media.discordapp.net/attachments/1080178640756691157/1215689653169037392/BOOKING_MANAGER_1.png?ex=65fdaa37&is=65eb3537&hm=8767e59234a1cad3b1bd2a7fe5a9f02067690f5f731d1218aff8488167ba6a06&=&format=webp&quality=lossless&width=556&height=416)
+<img src="assets/main.png" alt="MyFood" width="500" height="300">
 
 **Project Name:** MyFood 🍔🍕🌭
 
@@ -34,7 +34,7 @@ MyFood is a fictional app that implements a ranking system. The purpose of this 
 
 ## Development Team 🙋‍♀️
 
-![Jessie](https://media.discordapp.net/attachments/1080178640756691157/1215690412254306435/1.png?ex=65fdaaec&is=65eb35ec&hm=82822726e781da5712fb232f8ebfb09045be29b32282ea72fed3d81d481a79cd&=&format=webp&quality=lossless&width=150&height=150)
+<img src="assets/photo.png" alt="Jessie" width="300" height="300">
 
 - Developer: [Jessie M Bentes](https://github.com/LadyJessie19)
 
