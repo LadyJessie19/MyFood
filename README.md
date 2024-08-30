@@ -4,7 +4,7 @@
 
 ### MyFood is a platform that allows users to explore trending foods and rate their favorites, creating a dynamic food ranking system.
 
-<img src="assets/main.png" alt="MyFood" width="500" height="300">
+<img src="./assets/main.png" alt="MyFood" width="500" height="300" />
 
 **Project Name:** MyFood 🍔🍕🌭
 
@@ -32,9 +32,49 @@ MyFood is a fictional app that implements a ranking system. The purpose of this 
 - Display of most searched foods.
 - Integration with MongoDB for data storage.
 
+## Railway Deploy/MongoDB Notice ⚠️
+
+Please note that MongoDB or Railway services may be temporarily unavailable due to inactivity or other technical reasons. If this happens, you may need to clone the repository to your local machine and connect to another MongoDB database.
+
+## Installing the Project 🛠️
+
+Clone the repository:
+
+```bash
+git clone https://github.com/LadyJessie19/MyFood.git
+```
+
+## Running the Application 🚀
+
+To start the application:
+
+1. Navigate to the project directory.
+2. Run the following command to build and start the application:
+
+```bash
+mvn spring-boot:run
+```
+
+This will start the application on the default port, typically `8080`. For development purposes, I used the port `8081`.
+
+## How to import Insomnia File 📥
+
+1. **Download the Insomnia file;**
+2. **Open Insomnia;**
+3. **Import the File:**
+   - Click on the **`Import/Export`** button in the top-right corner of the Insomnia window.
+   - Select **`Import Data`** from the dropdown menu.
+   - Choose **`From File`** and browse to the location where you downloaded the Insomnia file.
+   - Select the file and click **`Open`** to import it.
+4. **Start Testing;**
+
+Once imported, you will see the collection of pre-configured requests in Insomnia. You can now start using them to test MyFood API.
+
+> **Note:** Make sure to set up the environment variable `base_url`. If you're running the project locally the default value is `http://localhost:8080`, but if you're running the project on Railway the default value is `https://app-myfood-production.up.railway.app`.
+
 ## Development Team 🙋‍♀️
 
-<img src="assets/photo.png" alt="Jessie" width="300" height="300">
+<img src="./assets/photo.png" alt="Jessie" width="300" height="300">
 
 - Developer: [Jessie M Bentes](https://github.com/LadyJessie19)
 
