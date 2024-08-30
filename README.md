@@ -78,7 +78,7 @@ Once imported, you will see the collection of pre-configured requests in Insomni
 
 - Developer: [Jessie M Bentes](https://github.com/LadyJessie19)
 
-## How to Contribute 🆘
+## How to Contribute 🤝
 
 If you want to contribute to the project, follow these steps:
 
