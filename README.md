@@ -74,7 +74,7 @@ Once imported, you will see the collection of pre-configured requests in Insomni
 
 ## Development Team 🙋‍♀️
 
-<img src="./assets/photo.png" alt="Jessie" width="300" height="300">
+<img src="assets/photo.png" alt="Jessie" width="150" >
 
 - Developer: [Jessie M Bentes](https://github.com/LadyJessie19)
 
